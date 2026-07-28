@@ -22,6 +22,9 @@ Fichiers modifies pour le provider pCloud :
 Le provider est enregistre sous le type Kopia `pcloud` via `blob.AddSupportedStorage`.
 La logique pCloud reste dans `../kopia-pcloud` et `../go-pcloud`.
 
+Correspondance entre chaque tag `vX.Y.Z-pcloud.N` et la version upstream Kopia
+de base : voir [`PATCHES.md`](PATCHES.md).
+
 Verification rapide depuis `../kopia-pcloud-infra` :
 
 ```sh
