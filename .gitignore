@@ -29,4 +29,6 @@ coverage.txt
 /vendor/
 .screenshots/
 .idea/
+AGENTS.md
+.agents/
 /.vs
