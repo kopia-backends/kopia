@@ -164,6 +164,7 @@ type App struct {
 	manifest     commandManifest
 	mount        commandMount
 	maintenance  commandMaintenance
+	pcloud       commandPCloud
 	repository   commandRepository
 	logs         commandLogs
 	notification commandNotification
@@ -314,6 +315,7 @@ func (c *App) setup(app *kingpin.Application) {
 	c.policy.setup(c, app)
 	c.mount.setup(c, app)
 	c.maintenance.setup(c, app)
+	c.pcloud.setup(c, app)
 	c.repository.setup(c, app)
 }
 
