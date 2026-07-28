@@ -1,0 +1,39 @@
+name: build
+
+on:
+  push:
+    branches: [pcloud-integration]
+  pull_request:
+    branches: [pcloud-integration]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: kopia
+
+      # kopia/go.mod replaces github.com/kopia-backends/go-pcloud and
+      # github.com/kopia-backends/kopia-pcloud with ../go-pcloud and
+      # ../kopia-pcloud, so both must be checked out as sibling directories.
+      - uses: actions/checkout@v4
+        with:
+          repository: kopia-backends/go-pcloud
+          path: go-pcloud
+
+      - uses: actions/checkout@v4
+        with:
+          repository: kopia-backends/kopia-pcloud
+          path: kopia-pcloud
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.25.8"
+
+      # Validates that the pCloud provider wiring still compiles against the
+      # latest published SDK/provider. This is not a full Kopia test run.
+      - working-directory: kopia
+        run: go build ./cli/... ./repo/...
+      - working-directory: kopia
+        run: go vet ./cli/...
