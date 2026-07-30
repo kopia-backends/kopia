@@ -18,6 +18,8 @@ import (
 type commandPCloud struct {
 	authorize commandPCloudAuthorize
 	storage   commandPCloudStorage
+	preflight commandPCloudPreflight
+	mkdir     commandPCloudMkdir
 }
 
 func (c *commandPCloud) setup(svc appServices, parent commandParent) {
@@ -25,6 +27,8 @@ func (c *commandPCloud) setup(svc appServices, parent commandParent) {
 
 	c.authorize.setup(svc, cmd)
 	c.storage.setup(svc, cmd)
+	c.preflight.setup(svc, cmd)
+	c.mkdir.setup(svc, cmd)
 }
 
 type commandPCloudAuthorize struct {
